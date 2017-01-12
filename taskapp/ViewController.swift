@@ -16,7 +16,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     let realm = try! Realm()
     var taskArray = try! Realm().objects(Task.self).sorted(byProperty: "date", ascending: false)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,9 +24,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-    
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,18 +95,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     print(request)
                     print("----------/")
                 }
+            }
         }
     }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        if let searchText = searchBar.text {
-            let predicate = NSPredicate(format: "category = %@", searchText)
-            taskArray = realm.objects(Task.self).filter(predicate)
-        }
-
-    }// called when keyboard search button pressed
-    
-   
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            if let searchText = searchBar.text {
+                let predicate = NSPredicate(format: "category = %@", searchText)
+                taskArray = realm.objects(Task.self).filter(predicate)
+            }
+        }// called when keyboard search button pressed
+        
 }
 

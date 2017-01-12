@@ -65,7 +65,7 @@ class InputViewController: UIViewController {
         let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: task.date as Date)
         let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents,repeats: false)
         
-        let request = UNNotificationRequest.init(identifier: String(task.id), content: content, trigger)
+        let request = UNNotificationRequest.init(identifier: String(task.id), content: content, trigger: trigger)
         
         let center = UNUserNotificationCenter.current()
         center.add(request) { (error) in
